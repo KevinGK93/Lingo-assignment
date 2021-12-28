@@ -1,0 +1,49 @@
+name: feature-pipeline
+
+on:
+  push:
+    branches:
+      - feature
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+
+  build:
+    name: feature
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14
+
+      #Run maven test for unit tests
+      - name: Run maven test
+        run: mvn -B test -Dspring.profiles.active=ci
+
+      #Run maven verify for integrationTest
+      - name: Maven Verify with Sonar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify -Dspring.profiles.active=ci org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinGK93_Lingo-assignment
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
