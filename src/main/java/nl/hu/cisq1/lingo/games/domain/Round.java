@@ -1,23 +1,35 @@
 package nl.hu.cisq1.lingo.games.domain;
 
-import nl.hu.cisq1.lingo.games.data.Repository.WordRepository;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.time.Instant;
-
+@Entity
+@Getter
+@Setter
+@Table(name = "round")
 public class Round {
-    private static final int MAX_ROUNDS = 5;
+    public static final int MAX_ATTEMPTS = 5;
 
-    private WordRepository wordRepository;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    private String wordToGuess;
 
-    private String word;
-    private int attempts;
-    private Instant lastAttempt;
-    private boolean roundOver;
+    @OneToMany
+    @JoinColumn
+    @Cascade(CascadeType.ALL)
+    private final List<Feedback> feedbackHistory = new ArrayList<>();
 
-    public Round(WordRepository wordRepository, int length){
-        this.wordRepository = wordRepository;
-        this.word = this.wordRepository.randomWord(length);
-        this.attempts = 0;
-        this.roundOver = false;
+    public Round(){}
+
+    public Round(String wordToGuess){
+        this.wordToGuess = wordToGuess;
     }
+
 }
+
