@@ -7,6 +7,7 @@ import nl.hu.cisq1.lingo.words.application.WordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
+import org.mockito.Mock;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -16,6 +17,15 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 class GameServiceTest {
+
+    @Mock
+    private GameRepository gameRepository;
+
+    @Mock
+    private GameService gameService;
+
+    @Mock
+    private WordService wordService;
 
     @Test
     @DisplayName("Test round size increased after guess attempt")
@@ -40,10 +50,10 @@ class GameServiceTest {
 
     static Stream<Arguments> gameProgressAttemptArguments() {
         return Stream.of(
-                Arguments.of(1, 1, GameProgress.ACTIVE),
-                Arguments.of(2, 2, GameProgress.ACTIVE),
-                Arguments.of(3, 3, GameProgress.ACTIVE),
-                Arguments.of(4, 4, GameProgress.ACTIVE),
+                Arguments.of(1, 1, GameProgress.PLAYING),
+                Arguments.of(2, 2, GameProgress.PLAYING),
+                Arguments.of(3, 3, GameProgress.PLAYING),
+                Arguments.of(4, 4, GameProgress.PLAYING),
                 Arguments.of(5, 5, GameProgress.LOST)
         );
     }

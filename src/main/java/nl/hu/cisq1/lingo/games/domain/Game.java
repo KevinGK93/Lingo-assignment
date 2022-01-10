@@ -36,7 +36,7 @@ public class Game {
 
     public void newRound(String wordToGuess) {
         this.rounds.add(new Round(wordToGuess));
-        this.gameProgress = GameProgress.ACTIVE;
+        this.gameProgress = GameProgress.PLAYING;
     }
 
     private Round getCurrentRound() {

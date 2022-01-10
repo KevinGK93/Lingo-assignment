@@ -37,9 +37,9 @@ public class Round {
         this.wordToGuess = wordToGuess;
     }
 
-    // determines the score minus the feedbackHistory size \\
+    // determines the score based on assignment description \\
     public int determineScore(){
-        return 3 * (3 - feedbackHistory.size() + 3);
+        return 5 * (5 - feedbackHistory.size() + 5);
     }
 
     public int getFeedbackHistorySize(){
@@ -63,7 +63,7 @@ public class Round {
     }
 
     public boolean roundActive(GameProgress progress){
-        return progress == GameProgress.ACTIVE;
+        return progress == GameProgress.PLAYING;
     }
 
     // get the (int) length of the word for the game.\\
