@@ -36,6 +36,7 @@ public class Round {
     public Round(String wordToGuess){
         this.wordToGuess = wordToGuess;
     }
+
     // determines the score minus the feedbackHistory size \\
     public int determineScore(){
         return 3 * (3 - feedbackHistory.size() + 3);
@@ -71,11 +72,11 @@ public class Round {
     }
 
     //If the word in length is not equal to the length of the wordToGuess throw new errorMessage. \\
-    //add the guess and the marks to feedbackHistory.
+    //add the guess and the marks to feedbackHistory.\\
     public void attemptAtWord(String guess){
         String rightWord = this.getWordToGuess();
         if(guess.length() != rightWord.length()){
-            throw new ExceptionMessages(ErrorMessages.Word_Length_Not_Equal_To_Guess_length.getErrorMessage());
+            throw new ExceptionMessages(ErrorMessages.WordLengthNotEqualToGuessLength.getErrorMessage());
         }
         var feedback = new Feedback();
         var marks = feedback.checkMarks(guess, rightWord);

@@ -2,9 +2,7 @@ package nl.hu.cisq1.lingo.games.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import nl.hu.cisq1.lingo.games.domain.enumerations.ErrorMessages;
 import nl.hu.cisq1.lingo.games.domain.enumerations.GameProgress;
-import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -32,56 +30,57 @@ public class Game {
     @Cascade(CascadeType.ALL)
     private final List<Round> rounds = new ArrayList<>();
 
-    public Game (){}
+    //apparently this is a code smell without text :)
+    public Game() {
+    }
 
-    public void newRound(String wordToGuess){
+    public void newRound(String wordToGuess) {
         this.rounds.add(new Round(wordToGuess));
         this.gameProgress = GameProgress.ACTIVE;
     }
 
-    private Round getCurrentRound(){
-        if(rounds.size() == 0){
+    private Round getCurrentRound() {
+        if (rounds.isEmpty()) {
             return null; //TODO: make better exception return.
-        }
-        else {
+        } else {
             return rounds.get(rounds.size() - 1);
         }
     }
 
-    private Round getPreviousRound(){
+    private Round getPreviousRound() {
         return rounds.get(rounds.size() - 1);
     }
 
     // make sure that wordLength can not go higher then 7 or lower then 5 \\
-    public int getNextWordToGuessLength(){
+    public int getNextWordToGuessLength() {
         var wordLength = this.getPreviousRound().getWordToGuessLength() + 1;
 
-        if (wordLength == 8 || wordLength < 5){
+        if (wordLength == 8 || wordLength < 5) {
             wordLength = 5;
         }
         return wordLength;
     }
 
     //TODO: clean up code
-    public void gameAttempt(String guess){
+    public void gameAttempt(String guess) {
         var currentRound = this.getCurrentRound();
 
-        if (currentRound != null){
+        if (currentRound != null) {
             currentRound.attemptAtWord(guess);
         }
 
-        if (currentRound != null && currentRound.thePlayerHasLost()){
+        if (currentRound != null && currentRound.thePlayerHasLost()) {
             this.gameProgress = GameProgress.LOST;
         }
 
-        if (currentRound != null && currentRound.isWordGuessed()){
+        if (currentRound != null && currentRound.isWordGuessed()) {
             this.score += currentRound.determineScore();
             this.gameProgress = GameProgress.WON;
         }
     }
 
     //TODO: possible gameProgress status check required to verify progress
-    public Progress gameProgress(){
+    public Progress gameProgress() {
         return new Progress(rounds, gameProgress, id, score);
     }
 }

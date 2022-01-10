@@ -22,7 +22,7 @@ public class GameService {
 
     public Game findGameById(Long id){
         return this.gameRepository.findById(id)
-        .orElseThrow(()-> new ExceptionMessages(ErrorMessages.Game_Id_Not_Found.getErrorMessage()));
+        .orElseThrow(()-> new ExceptionMessages(ErrorMessages.GameIdNotFound.getErrorMessage()));
     }
 
     public Progress startNewLingoRound(Long id){
