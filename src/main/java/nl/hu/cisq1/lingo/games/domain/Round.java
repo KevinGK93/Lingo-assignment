@@ -76,7 +76,7 @@ public class Round {
     public void attemptAtWord(String guess){
         String rightWord = this.getWordToGuess();
         if(guess.length() != rightWord.length()){
-            throw new ExceptionMessages(ErrorMessages.WordLengthNotEqualToGuessLength.getErrorMessage());
+            throw new ExceptionMessages(ErrorMessages.WORD_LENGTH_NOT_EQUAL_TO_GUESS_LENGTH.getErrorMessage());
         }
         var feedback = new Feedback();
         var marks = feedback.checkMarks(guess, rightWord);
