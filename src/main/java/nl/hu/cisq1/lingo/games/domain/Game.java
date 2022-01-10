@@ -20,7 +20,7 @@ public class Game {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     private Long score = 0L;
 
