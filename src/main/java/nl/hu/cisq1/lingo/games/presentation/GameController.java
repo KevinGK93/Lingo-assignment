@@ -26,7 +26,7 @@ public class GameController {
 
     @PostMapping("/{id}/attempt")
     public Progress attemptAtLingoWord(@PathVariable Long id, @RequestBody RequestAttemptDto dto){
-        return this.gameService.lingoWordAttempt(id, dto.word);
+        return this.gameService.lingoWordAttempt(id, dto.getWord());
     }
 
     @PostMapping("/{id}/nextRound")

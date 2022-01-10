@@ -44,7 +44,7 @@ public class Feedback {
     public List<Mark> checkMarks(String guess, String rightWord) {
         List<Mark> gameMarks = new ArrayList<>();
 
-        // set every mark in the word absent based on the length of the rightWord
+        // set every mark in the word absent based on the length of the rightWord.\\
         for (int rightWordIndex = 0;
              rightWordIndex < rightWord.length(); rightWordIndex++) {
             gameMarks.add(Mark.ABSENT);
@@ -53,25 +53,25 @@ public class Feedback {
         var rightWordChars = rightWord.toCharArray();
         int rightWordLength = rightWord.length();
 
-        // for loop through each index
+        // for loop through each index.\\ //test stream method\\
         for (int wordIndex = 0;
              wordIndex < rightWordLength; wordIndex++) {
 
-            // if the index of the characters matches: set Mark.Correct
+            // if the index of the characters matches: set Mark.Correct.\\
             if (guessChars[wordIndex] == rightWordChars[wordIndex]) {
                 gameMarks.set(wordIndex, Mark.CORRECT);
                 rightWordChars[wordIndex] = '.';
             }
         }
-        // loop through each guessIndex > based on the rightWordLength
+        // loop through each guessIndex > based on the rightWordLength.\\
         for (int guessIndex = 0;
              guessIndex < rightWordLength; guessIndex++)
         {
-            // loop through each rightWordIndex > based on the rightWordLength
+            // loop through each rightWordIndex > based on the rightWordLength.\\
             for (int rightWordIndex = 0;
                  rightWordIndex < rightWordLength; rightWordIndex++)
 
-            { // if the char of guessIndex == the char of rightWordIndex and gameMarks index = absent set Mark.Present
+            { // if the char of guessIndex == the char of rightWordIndex and gameMarks index = absent set Mark.Present.\\
                 if (guessChars[guessIndex] == rightWordChars[rightWordIndex]
                         && gameMarks.get(guessIndex) == Mark.ABSENT) {
                     gameMarks.set(guessIndex, Mark.PRESENT);
@@ -83,7 +83,7 @@ public class Feedback {
     }
 
     /**
-     * InteliJ generated
+     * IntelliJ generated
      */
     @Override
     public boolean equals(Object o) {
