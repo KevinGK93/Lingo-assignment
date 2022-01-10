@@ -30,8 +30,8 @@ public class Game {
     @Cascade(CascadeType.ALL)
     private final List<Round> rounds = new ArrayList<>();
 
-    //apparently this is a code smell without text :)
     public Game() {
+        //empty constructor required by Hibernate.
     }
 
     public void newRound(String wordToGuess) {
