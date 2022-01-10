@@ -22,7 +22,7 @@ public class Round {
     public static final int MAX_ATTEMPTS = 5;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long id;
     private String wordToGuess;
 
@@ -40,6 +40,7 @@ public class Round {
     public int determineScore(){
         return 3 * (3 - feedbackHistory.size() + 3);
     }
+
     public int getFeedbackHistorySize(){
         return feedbackHistory.size();
     }

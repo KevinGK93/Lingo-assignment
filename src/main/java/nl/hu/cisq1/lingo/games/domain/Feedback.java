@@ -18,53 +18,64 @@ import java.util.Objects;
 public class Feedback {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long id;
     private String attempt;
 
     @ElementCollection
     private List<Mark> marks;
 
-    public Feedback(){}
+    public Feedback() {
+    }
 
-    public Feedback(String attempt, List<Mark> marks){
+    public Feedback(String attempt, List<Mark> marks) {
         this.attempt = attempt;
         this.marks = marks;
     }
 
-    public boolean wordIsGuessed(){
+    public boolean wordIsGuessed() {
         return this.marks.stream().allMatch(Mark.CORRECT::equals);
     }
 
-    public boolean wordIsInvalid(){
+    public boolean wordIsInvalid() {
         return this.marks.stream().allMatch(Mark.ABSENT::equals);
     }
 
-    public List<Mark> checkMarks(String guess, String rightWord){
+    public List<Mark> checkMarks(String guess, String rightWord) {
         List<Mark> gameMarks = new ArrayList<>();
 
+        // set every mark in the word absent based on the length of the rightWord
         for (int rightWordIndex = 0;
-             rightWordIndex < rightWord.length(); rightWordIndex++){
+             rightWordIndex < rightWord.length(); rightWordIndex++) {
             gameMarks.add(Mark.ABSENT);
         }
         var guessChars = guess.toCharArray();
         var rightWordChars = rightWord.toCharArray();
         int rightWordLength = rightWord.length();
 
-        for (int i = 0;
-            i < rightWordLength; i++){
-            if (guessChars[i] == rightWordChars[i]){
-                gameMarks.set(i, Mark.CORRECT);
-                rightWordChars[i] = '-';
+        // for loop through each index
+        for (int wordIndex = 0;
+             wordIndex < rightWordLength; wordIndex++) {
+
+            // if the index of the characters matches: set Mark.Correct
+            if (guessChars[wordIndex] == rightWordChars[wordIndex]) {
+                gameMarks.set(wordIndex, Mark.CORRECT);
+                rightWordChars[wordIndex] = 'C';
             }
         }
-        for (int i = 0;
-            i < rightWordLength; i++){
-            for (int j = 0;
-                j < rightWordLength; j++){
-                if (guessChars[i] == rightWordChars[j] && gameMarks.get(i) == Mark.ABSENT){
-                    gameMarks.set(i, Mark.PRESENT);
-                    rightWordChars[j] = '-';
+        // loop through each guessIndex > based on the rightWordLength
+        for (int guessIndex = 0;
+             guessIndex < rightWordLength; guessIndex++)
+        {
+            // loop through each rightWordIndex > based on the rightWordLength
+            for (int rightWordIndex = 0;
+                 rightWordIndex < rightWordLength; rightWordIndex++)
+
+            { // if the char of guessIndex == the char of rightWordIndex and gameMarks index = absent set Mark.Present
+                if (guessChars[guessIndex] == rightWordChars[rightWordIndex]
+                        && gameMarks.get(guessIndex) == Mark.ABSENT) {
+                    gameMarks.set(guessIndex, Mark.PRESENT);
+                    rightWordChars[rightWordIndex] = 'P';
                 }
             }
         }
