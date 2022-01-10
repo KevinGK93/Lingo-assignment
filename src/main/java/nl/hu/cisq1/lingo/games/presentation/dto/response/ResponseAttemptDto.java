@@ -1,6 +1,11 @@
 package nl.hu.cisq1.lingo.games.presentation.dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ResponseAttemptDto {
-    public String word;
-    public int length;
+    private String word;
+    private int length;
 }
