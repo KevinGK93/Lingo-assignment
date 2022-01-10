@@ -2,7 +2,7 @@ package nl.hu.cisq1.lingo.games.domain.enumerations;
 
 public enum ErrorMessages {
     WordLengthNotEqualToGuessLength("Het door u opgegeven woord heeft teveel letters"),
-    GameIdNotFound("Het door u opgegeven id komt niet overeen met een id in het systeem");
+    Game_Id_Not_Found("Het door u opgegeven id komt niet overeen met een id in het systeem");
 
     private String errorMessage;
 

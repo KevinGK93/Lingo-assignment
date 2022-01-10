@@ -60,7 +60,7 @@ public class Feedback {
             // if the index of the characters matches: set Mark.Correct
             if (guessChars[wordIndex] == rightWordChars[wordIndex]) {
                 gameMarks.set(wordIndex, Mark.CORRECT);
-                rightWordChars[wordIndex] = 'C';
+                rightWordChars[wordIndex] = '.';
             }
         }
         // loop through each guessIndex > based on the rightWordLength
@@ -75,7 +75,7 @@ public class Feedback {
                 if (guessChars[guessIndex] == rightWordChars[rightWordIndex]
                         && gameMarks.get(guessIndex) == Mark.ABSENT) {
                     gameMarks.set(guessIndex, Mark.PRESENT);
-                    rightWordChars[rightWordIndex] = 'P';
+                    rightWordChars[rightWordIndex] = '.';
                 }
             }
         }
