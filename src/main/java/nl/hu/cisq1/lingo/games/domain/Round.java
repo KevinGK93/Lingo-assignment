@@ -31,7 +31,9 @@ public class Round {
     @Cascade(CascadeType.ALL)
     private final List<Feedback> feedbackHistory = new ArrayList<>();
 
-    public Round(){}
+    public Round(){
+        //empty constructor required by Hibernate.
+    }
 
     public Round(String wordToGuess){
         this.wordToGuess = wordToGuess;
@@ -60,7 +62,6 @@ public class Round {
     public boolean isWordGuessed(){
         var feedbackGiven = this.getLastGivenFeedback();
         return feedbackGiven.contains(Mark.CORRECT);
-//        return !feedbackGiven.contains(Mark.ABSENT) && !feedbackGiven.contains(Mark.PRESENT);
     }
 
     public boolean roundActive(GameProgress progress){

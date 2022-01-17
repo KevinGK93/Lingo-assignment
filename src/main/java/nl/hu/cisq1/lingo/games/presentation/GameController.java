@@ -4,8 +4,14 @@ import lombok.RequiredArgsConstructor;
 import nl.hu.cisq1.lingo.games.application.GameService;
 import nl.hu.cisq1.lingo.games.domain.Game;
 import nl.hu.cisq1.lingo.games.domain.Progress;
+import nl.hu.cisq1.lingo.games.domain.enumerations.ErrorMessages;
+import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
+import nl.hu.cisq1.lingo.games.domain.exceptions.GameNotFound;
+import nl.hu.cisq1.lingo.games.domain.exceptions.InvalidAction;
 import nl.hu.cisq1.lingo.games.presentation.dto.request.RequestAttemptDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,21 +22,43 @@ public class GameController {
 
     @PostMapping
     public Progress startNewLingoGame(){
-        return this.gameService.startNewLingoGame();
+        try {
+            return this.gameService.startNewLingoGame();
+        }catch (InvalidAction exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
     }
 
     @GetMapping("/{id}")
     public Game getCurrentGameById(@PathVariable Long id){
-        return this.gameService.findGameById(id);
+        try {
+            return this.gameService.findGameById(id);
+        }catch (GameNotFound exception){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+        }catch (InvalidAction exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
     }
 
     @PostMapping("/{id}/attempt")
     public Progress attemptAtLingoWord(@PathVariable Long id, @RequestBody RequestAttemptDto dto){
-        return this.gameService.lingoWordAttempt(id, dto.getWord());
+        try {
+            return this.gameService.lingoWordAttempt(id, dto.getWord());
+        }catch (GameNotFound exception){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+        }catch (InvalidAction exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
     }
 
     @PostMapping("/{id}/nextRound")
     public Progress nextLingoRound(@PathVariable Long id){
-        return this.gameService.startNewLingoRound(id);
+        try {
+            return this.gameService.startNewLingoRound(id);
+        }catch (GameNotFound exception){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+        }catch (InvalidAction exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
     }
 }
