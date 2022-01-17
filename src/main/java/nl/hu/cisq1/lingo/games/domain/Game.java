@@ -55,12 +55,12 @@ public class Game {
 
     // make sure that wordLength can not go higher then 7 or lower then 5 \\
     public int getNextWordToGuessLength() {
-        var wordLength = this.getPreviousRound().getWordToGuessLength() + 1;
+        var nextWordLength = this.getPreviousRound().getWordToGuessLength() + 1;
 
-        if (wordLength == 8 || wordLength < 5) {
-            wordLength = 5;
+        if (nextWordLength == 8 || nextWordLength < 5) {
+            nextWordLength = 5;
         }
-        return wordLength;
+        return nextWordLength;
     }
 
     //TODO: clean up code
