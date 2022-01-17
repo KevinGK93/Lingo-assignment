@@ -19,7 +19,7 @@ public class GameController {
         return this.gameService.startNewLingoGame();
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public Game getCurrentGameById(@PathVariable Long id){
         return this.gameService.findGameById(id);
     }

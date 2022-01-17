@@ -2,7 +2,9 @@ package nl.hu.cisq1.lingo.games.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import nl.hu.cisq1.lingo.games.domain.enumerations.ErrorMessages;
 import nl.hu.cisq1.lingo.games.domain.enumerations.GameProgress;
+import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -41,7 +43,7 @@ public class Game {
 
     private Round getCurrentRound() {
         if (rounds.isEmpty()) {
-            return null; //TODO: make better exception return.
+            throw new ExceptionMessages(ErrorMessages.NO_ROUND_STARTED.getErrorMessage());
         } else {
             return rounds.get(rounds.size() - 1);
         }

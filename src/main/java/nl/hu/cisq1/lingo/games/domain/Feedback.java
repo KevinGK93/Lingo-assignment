@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 import static nl.hu.cisq1.lingo.games.domain.enumerations.Mark.*;
 
@@ -40,38 +41,28 @@ public class Feedback {
     }
 
     public boolean wordIsInvalid() {
-        return this.marks.stream().allMatch(Mark.ABSENT::equals);
+        return this.marks.stream().allMatch(Mark.INVALID::equals);
     }
 
     public List<Mark> checkMarks(String guess, String rightWord) {
         List<Mark> gameMarks = new ArrayList<>();
 
-        // set every mark in the word absent based on the length of the rightWord.\\
+        // set all indexes abasent based on the rightWord index length\\
         for (int rightWordIndex = 0;
              rightWordIndex < rightWord.length(); rightWordIndex++) {
             gameMarks.add(ABSENT);
         }
         var guessChars = guess.toCharArray();
         var rightWordChars = rightWord.toCharArray();
-
         int rightWordLength = rightWord.length();
-        int guessWordLength = guess.length();
 
-        // for loop through each index.\\ //test stream method\\
-        for (int wordIndex = 0;
-             wordIndex < rightWordLength; wordIndex++) {
-
-            // if the guess length of the word does not equal the played word length all marks are invalid
-            if (guessWordLength != rightWordLength){
-                gameMarks.set(wordIndex, INVALID);
-            }
-
-            // if the index of the characters matches: set Mark.Correct.\\
-            if (guessChars[wordIndex] == rightWordChars[wordIndex]) {
+        // compare chars based on index if they are the same set mark CORRECT \\
+        IntStream.range(0, rightWordLength).filter
+                (wordIndex -> guessChars[wordIndex] == rightWordChars[wordIndex]).forEach(wordIndex -> {
                 gameMarks.set(wordIndex, CORRECT);
                 rightWordChars[wordIndex] = '.';
-            }
-        }
+        });
+
         // loop through each guessIndex > based on the rightWordLength.\\
         for (int guessIndex = 0;
              guessIndex < rightWordLength; guessIndex++)
@@ -80,7 +71,7 @@ public class Feedback {
             for (int rightWordIndex = 0;
                  rightWordIndex < rightWordLength; rightWordIndex++)
 
-            { // if the char of guessIndex == the char of rightWordIndex and gameMarks index = absent set Mark.Present.\\
+            { // if the chars of the indexes are equal change absent to present\\
                 if (guessChars[guessIndex] == rightWordChars[rightWordIndex]
                         && gameMarks.get(guessIndex) == ABSENT) {
                     gameMarks.set(guessIndex, PRESENT);

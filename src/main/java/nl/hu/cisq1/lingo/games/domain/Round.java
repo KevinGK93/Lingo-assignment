@@ -46,7 +46,7 @@ public class Round {
         return feedbackHistory.size();
     }
 
-    // If the feedbackHistorySize equals 5 the player has lost.\\
+    // If the feedbackHistorySize equals 6 the player has lost.\\
     public boolean thePlayerHasLost(){
         return getFeedbackHistorySize() == 5;
 
@@ -59,7 +59,8 @@ public class Round {
     // \\
     public boolean isWordGuessed(){
         var feedbackGiven = this.getLastGivenFeedback();
-        return !feedbackGiven.contains(Mark.ABSENT) && !feedbackGiven.contains(Mark.PRESENT);
+        return feedbackGiven.contains(Mark.CORRECT);
+//        return !feedbackGiven.contains(Mark.ABSENT) && !feedbackGiven.contains(Mark.PRESENT);
     }
 
     public boolean roundActive(GameProgress progress){

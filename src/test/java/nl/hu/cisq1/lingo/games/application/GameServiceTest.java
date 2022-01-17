@@ -4,9 +4,11 @@ import nl.hu.cisq1.lingo.games.data.GameRepository;
 import nl.hu.cisq1.lingo.games.domain.Game;
 import nl.hu.cisq1.lingo.games.domain.enumerations.GameProgress;
 import nl.hu.cisq1.lingo.words.application.WordService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 
 import java.util.Optional;
@@ -18,26 +20,21 @@ import static org.mockito.Mockito.*;
 
 class GameServiceTest {
 
-    @Mock
-    private GameRepository gameRepository;
+    @BeforeEach
 
-    @Mock
-    private GameService gameService;
-
-    @Mock
-    private WordService wordService;
 
     @Test
-    @DisplayName("Test round size increased after guess attempt")
+    @DisplayName("Test round size increased after each guess attempt")
+    @MethodSource("gameProgressAttemptArguments")
     void testRoundSizeAfterAttempt(){
         //given
-        WordService wordService = mock(WordService.class);
-        GameRepository gameRepository = mock(GameRepository.class);
-        GameService gameService = new GameService(wordService, gameRepository);
+        var wordService = mock(WordService.class);
+        var gameRepository = mock(GameRepository.class);
+        var gameService = new GameService(wordService, gameRepository);
 
         Game game = new Game();
         game.setId(1L);
-        game.newRound("aaien");
+        game.newRound("appel");
 
         //when
         when(wordService.provideRandomWord(anyInt())).thenReturn("");
@@ -54,7 +51,8 @@ class GameServiceTest {
                 Arguments.of(2, 2, GameProgress.PLAYING),
                 Arguments.of(3, 3, GameProgress.PLAYING),
                 Arguments.of(4, 4, GameProgress.PLAYING),
-                Arguments.of(5, 5, GameProgress.LOST)
+                Arguments.of(5, 5, GameProgress.PLAYING)
+
         );
     }
 }

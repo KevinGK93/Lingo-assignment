@@ -4,7 +4,6 @@ import nl.hu.cisq1.lingo.CiTestConfiguration;
 import nl.hu.cisq1.lingo.games.application.GameService;
 import nl.hu.cisq1.lingo.games.domain.Progress;
 import nl.hu.cisq1.lingo.games.domain.enumerations.GameProgress;
-import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-import java.io.InvalidClassException;
-import java.io.InvalidObjectException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
