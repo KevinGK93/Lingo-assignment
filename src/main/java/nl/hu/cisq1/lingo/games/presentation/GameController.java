@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import nl.hu.cisq1.lingo.games.application.GameService;
 import nl.hu.cisq1.lingo.games.domain.Game;
 import nl.hu.cisq1.lingo.games.domain.Progress;
-import nl.hu.cisq1.lingo.games.domain.enumerations.ErrorMessages;
-import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
 import nl.hu.cisq1.lingo.games.domain.exceptions.GameNotFound;
 import nl.hu.cisq1.lingo.games.domain.exceptions.InvalidAction;
 import nl.hu.cisq1.lingo.games.presentation.dto.request.RequestAttemptDto;

@@ -28,18 +28,17 @@ public class GameServiceIT {
 
         assertEquals(GameProgress.PLAYING, progress.getGameProgress());
         assertEquals(0, progress.getScore());
-//        assertEquals(5, progress.getRounds());
     }
 
-//    @Test
-//    @DisplayName("cannot start a new round when still playing")
-//    void cannotStartNewRound() {
-//        var currentProgress = gameService.startNewLingoGame();
-//        Long id = currentProgress.getId();
-//
-//        assertThrows(
-//                InvalidAction.class,
-//                () -> gameService.startNewLingoRound(id)
-//        );
-//    }
+    @Test
+    @DisplayName("cannot start a new round when still playing")
+    void cannotStartNewRound() {
+        var currentProgress = gameService.startNewLingoGame();
+        Long id = currentProgress.getId();
+
+        assertThrows(
+                InvalidAction.class,
+                () -> gameService.startNewLingoRound(id)
+        );
+    }
 }

@@ -19,23 +19,21 @@ public class GameService {
     private final WordService wordService;
     private final GameRepository gameRepository;
 
-
-    public Game findGameById(Long id){
-        return this.gameRepository.findById(id)
-        .orElseThrow(()-> new ExceptionMessages(ErrorMessages.GAME_ID_NOT_FOUND.getErrorMessage()));
+    public Game findGameById(Long gameId){
+        return this.gameRepository.findById(gameId)
+                .orElseThrow(()-> new ExceptionMessages(ErrorMessages.GAME_ID_NOT_FOUND.getErrorMessage()));
     }
 
-    public Progress startNewLingoRound(Long id){
-        var newGameRound = findGameById(id);
+    public Progress startNewLingoRound(Long gameId){
+        var lingoGame = findGameById(gameId);
 
-        var newGameLength = newGameRound.getNextWordToGuessLength();
+        var newGameLength = lingoGame.getNextWordToGuessLength();
         var wordToGuess = this.wordService.provideRandomWord(newGameLength);
-        newGameRound.newRound(wordToGuess);
-        gameRepository.save(newGameRound);
+        lingoGame.newRound(wordToGuess);
+        gameRepository.save(lingoGame);
 
-        return newGameRound.gameProgress();
+        return lingoGame.gameProgress();
     }
-
 
     public Progress startNewLingoGame(){
         var lingoGame = this.wordService.provideRandomWord(5);
