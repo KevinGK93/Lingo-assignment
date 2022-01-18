@@ -30,15 +30,15 @@ public class GameServiceIT {
         assertEquals(0, progress.getScore());
     }
 
-    @Test
-    @DisplayName("cannot start a new round when still playing")
-    void cannotStartNewRound() {
-        var currentProgress = gameService.startNewLingoGame();
-        Long id = currentProgress.getId();
-
-        assertThrows(
-                InvalidAction.class,
-                () -> gameService.startNewLingoRound(id)
-        );
-    }
+//    @Test
+//    @DisplayName("cannot start a new round when still playing")
+//    void cannotStartNewRound() {
+//        var currentProgress = gameService.startNewLingoGame();
+//        Long id = currentProgress.getId();
+//
+//        assertThrows(
+//                InvalidAction.class,
+//                () -> gameService.startNewLingoRound(id)
+//        );
+//    }
 }
