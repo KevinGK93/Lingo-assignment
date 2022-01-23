@@ -25,7 +25,7 @@ public class GameController {
             return this.gameService.startNewLingoGame();
         }catch (InvalidAction exception){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-    }
+        }
     }
 
     @GetMapping("/{id}")

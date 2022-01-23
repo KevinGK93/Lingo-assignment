@@ -62,7 +62,7 @@ public class Game {
         }
         return nextWordLength;
     }
-
+    //set the gameProgress to lost or won for the round \\
     public void gameAttempt(String guess) {
         var currentRound = this.getCurrentRound();
 

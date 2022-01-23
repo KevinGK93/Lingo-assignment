@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @ToString
 public class Progress {
-    private List<Round> rounds;
     private GameProgress gameProgress;
     private Long id;
     private Long score;
