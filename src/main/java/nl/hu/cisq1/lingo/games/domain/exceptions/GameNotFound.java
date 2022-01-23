@@ -7,7 +7,7 @@ public class GameNotFound extends RuntimeException {
         super(message);
     }
 
-    public GameNotFound GameNotFound(long gameId) {
+    public GameNotFound notFound(long gameId) {
         var message = String.format("Het door u opgevraagde spel met %d is niet gevonden", gameId);
         return new GameNotFound(message);
     }

@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.ToString;
 import nl.hu.cisq1.lingo.games.domain.enumerations.GameProgress;
 
-import java.util.List;
-
 @Getter
 @ToString
 public class Progress {
