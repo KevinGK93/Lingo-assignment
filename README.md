@@ -7,6 +7,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=KevinGK93_Lingo-assignment&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=KevinGK93_Lingo-assignment)
 
 ## Dependabot:
-[Dependabot is enabled](https://gyazo.com/7ef7fefd90275236dea859e5ea69bfe8)
+[Enabled](https://gyazo.com/3c90d490a2b6805819e4a0f1addf152c)
 
 
