@@ -9,4 +9,12 @@
 ## Dependabot:
 [Enabled](https://gyazo.com/3c90d490a2b6805819e4a0f1addf152c)
 
+## Endpoints:
 
+/game |Method: POST | start new lingoGame
+/game/{id} |Method: GET | GET lingoGame
+/game/{id}/attempt |Method: POST | lingo game attempt at word.
+/game/{id}/newRound |Method: POST | start a new lingo game round.
+
+## Not implemented:
+- Hints
