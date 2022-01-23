@@ -1,7 +1,7 @@
-CREATE TABLE words (
-    word varchar(16) PRIMARY KEY,
-    length smallint
-); 
+-- CREATE TABLE words (
+--     word varchar(16) PRIMARY KEY,
+--     length smallint
+-- );
 
 -- Extracted from: https://github.com/OpenTaal/opentaal-wordlist/
 INSERT INTO words (word, length) VALUES 
