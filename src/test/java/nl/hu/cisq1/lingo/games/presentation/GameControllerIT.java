@@ -40,12 +40,13 @@ class GameControllerIT {
     @Test
     @DisplayName("start a new game")
     void endpointNewGameTest() throws Exception{
-        when(wordRepository.findRandomWordByLength(5))
-                .thenReturn(Optional.of(new Word("baard")));
-
+        //Given
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/game");
-
+        //When
+        when(wordRepository.findRandomWordByLength(5))
+                .thenReturn(Optional.of(new Word("baard")));
+        //Then
         mockMvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.score", is(0)))
@@ -56,11 +57,12 @@ class GameControllerIT {
     @Test
     @DisplayName("start a new round")
     void startNewRound() throws Exception {
+        //Given
         Game game = new Game();
-
         game.newRound("baard");
         game.gameAttempt("baard");
 
+        //When
         when(gameRepository.findById(0L))
                 .thenReturn(Optional.of(game));
 
@@ -69,7 +71,8 @@ class GameControllerIT {
 
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/game/0/nextRound");
-
+        
+        //Then
         mockMvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.gameProgress", is("PLAYING")))
@@ -80,10 +83,11 @@ class GameControllerIT {
     @Test
     @DisplayName("cannot start new round if game not found")
     void cannotStartRound() throws Exception {
+        //Given
         var game = new Game();;
-
         game.newRound("baard");
 
+        //When
         when(gameRepository.findById(0L))
                 .thenReturn(Optional.of(game));
 
@@ -93,6 +97,7 @@ class GameControllerIT {
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/game/0/newRound");
 
+        //Then
         mockMvc.perform(request)
                 .andExpect(status().isNotFound());
     }
@@ -100,8 +105,10 @@ class GameControllerIT {
     @Test
     @DisplayName("cannot get a game by id if id does not exist")
     void getGame() throws Exception {
+        //Given
         var game = new Game();
 
+        //When
         when(gameRepository.findById(0L))
                 .thenReturn(Optional.of(game));
 
@@ -111,6 +118,7 @@ class GameControllerIT {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/game/0");
 
+        //Then
         mockMvc.perform(request)
                 .andExpect(status().is5xxServerError());
     }
