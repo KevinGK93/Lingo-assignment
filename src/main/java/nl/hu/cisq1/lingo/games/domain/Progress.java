@@ -16,11 +16,10 @@ public class Progress {
 
     public Progress(){}
 
-    public Progress(List<Round> rounds, GameProgress gameProgress, long id, long score){
-        this.rounds = rounds;
-        this.gameProgress = gameProgress;
+    public Progress(Long id, Long score, List<Round> rounds, GameProgress gameProgress){
         this.id = id;
         this.score = score;
-
+        this.rounds = rounds;
+        this.gameProgress = gameProgress;
     }
 }

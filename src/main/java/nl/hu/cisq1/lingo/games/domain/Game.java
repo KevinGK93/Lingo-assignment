@@ -57,13 +57,12 @@ public class Game {
     public int getNextWordToGuessLength() {
         var nextWordLength = this.getPreviousRound().getWordToGuessLength() + 1;
 
-        if (nextWordLength == 8 || nextWordLength < 5) {
+        if (nextWordLength >= 8 || nextWordLength < 5) {
             nextWordLength = 5;
         }
         return nextWordLength;
     }
 
-    //TODO: clean up code
     public void gameAttempt(String guess) {
         var currentRound = this.getCurrentRound();
 
@@ -81,14 +80,7 @@ public class Game {
         }
     }
 
-    //i have to add this weird if statement otherwise id gives a NullPointerException during the
-    // round test in GameServiceTest line 57
     public Progress gameProgress() {
-        if(id == null){
-            id = 1L;
-            return new Progress(rounds, gameProgress, id, score);
-
-        }
-        return new Progress(rounds, gameProgress, id, score);
+        return new Progress(id, score, rounds, gameProgress);
     }
 }

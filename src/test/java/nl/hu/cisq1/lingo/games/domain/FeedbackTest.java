@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FeedbackTest {
 
     @Test
-    @DisplayName("All letters in the guessed word are correct")
+    @DisplayName("word is guessed if all marks are correct")
     void testWordIsCorrect(){
         var feedback = new Feedback("appel", List.of(CORRECT, CORRECT, CORRECT, CORRECT, CORRECT));
         assertTrue(feedback.wordIsGuessed());

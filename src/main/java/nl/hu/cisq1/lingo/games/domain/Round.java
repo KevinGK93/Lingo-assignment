@@ -58,10 +58,10 @@ public class Round {
         return feedbackHistory.get(feedbackHistory.size() -1).getMarks();
     }
 
-    // \\
+    //the word is guessed if the last given feedback does not contain any ABSENT or PRESENT chars for each index \\
     public boolean isWordGuessed(){
         var feedbackGiven = this.getLastGivenFeedback();
-        return feedbackGiven.contains(Mark.CORRECT);
+        return !feedbackGiven.contains(Mark.ABSENT) && !feedbackGiven.contains(Mark.PRESENT);
     }
 
     public boolean roundActive(GameProgress progress){
