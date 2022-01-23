@@ -11,10 +11,10 @@
 
 ## Endpoints:
 
-/game |Method: POST | start new lingoGame \n
-/game/{id} |Method: GET | GET lingoGame \n
-/game/{id}/attempt |Method: POST | lingo game attempt at word.\n
-/game/{id}/newRound |Method: POST | start a new lingo game round.\n
+/game |Method: POST | start new lingoGame <br />
+/game/{id} |Method: GET | GET lingoGame <br />
+/game/{id}/attempt |Method: POST | lingo game attempt at word.<br />
+/game/{id}/newRound |Method: POST | start a new lingo game round.<br />
 
 ## Not implemented:
 - Hints
