@@ -27,7 +27,8 @@ class GameTest {
         //Then
         assertEquals(result, game.getGameProgress());
 
-        }
+    }
+
     //When
     static Stream<Arguments> gameProgressStates() {
         return Stream.of(
@@ -41,16 +42,21 @@ class GameTest {
     @ParameterizedTest
     @DisplayName("Set next wordLength when word is guessed")
     @MethodSource("wordLengthDataStream")
-    void nextWordtLengthTest(String guess, int result){
+    void nextWordtLengthTest(String guess, int result) {
         //Given
         var game = new Game();
         game.newRound(guess);
 
         //Then
         assertEquals(result, game.getNextWordToGuessLength());
+
+        if (game.getNextWordToGuessLength() == 4){
+            assertEquals(5, result);
+        }
     }
+
     //When
-    static Stream<Arguments> wordLengthDataStream(){
+    static Stream<Arguments> wordLengthDataStream() {
         return Stream.of(
                 Arguments.of("woord", 6),
                 Arguments.of("honden", 7),
@@ -61,11 +67,8 @@ class GameTest {
 
     @Test
     @DisplayName("the starting game status is waiting_for_round")
-    void startingGameStatus(){
+    void startingGameStatus() {
         var game = new Game();
-        assertEquals(GameProgress.WAITING_FOR_ROUND,game.getGameProgress());
+        assertEquals(GameProgress.WAITING_FOR_ROUND, game.getGameProgress());
     }
-
-
-
 }

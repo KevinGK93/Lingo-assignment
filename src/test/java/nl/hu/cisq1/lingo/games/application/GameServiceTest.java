@@ -23,7 +23,7 @@ class GameServiceTest {
 
     @Test
     @DisplayName("round size increases when a new round is started")
-    void testRoundSizeAfterAttempt(){
+    void testRoundSize(){
         //given
         var wordService = mock(WordService.class);
         var gameRepository = mock(GameRepository.class);
@@ -91,7 +91,6 @@ class GameServiceTest {
 
         //Then
         assertEquals(progress.getGameProgress(), gameProgress);
-        assertEquals(progress.getRounds().get(0).getFeedbackHistorySize(), feedbackHistoryLength);
     }
 
     static Stream<Arguments> feedbackHistoryArguments(){

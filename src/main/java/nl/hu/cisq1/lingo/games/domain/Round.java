@@ -64,10 +64,6 @@ public class Round {
         return !feedbackGiven.contains(Mark.ABSENT) && !feedbackGiven.contains(Mark.PRESENT);
     }
 
-    public boolean roundActive(GameProgress progress){
-        return progress == GameProgress.PLAYING;
-    }
-
     // get the (int) length of the word for the game.\\
     public int getWordToGuessLength(){
         return wordToGuess.length();

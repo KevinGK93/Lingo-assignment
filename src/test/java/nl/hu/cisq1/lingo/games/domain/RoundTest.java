@@ -11,8 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RoundTest {
 
@@ -44,13 +43,23 @@ class RoundTest {
         //Given
         var round = new Round("hodor");
 
-        //THen
+        //Then
         assertThrows(ExceptionMessages.class,
                 ()-> {
             round.attemptAtWord("boer");
             }
         );
-        }
+    }
+    @Test
+    @DisplayName("The correct word is guessed")
+    void wordIsGuessedTest(){
+        var round = new Round("kevin");
+        round.attemptAtWord("kevin");
+        assertTrue(round.isWordGuessed());
+    }
+
+
+
 
     }
 

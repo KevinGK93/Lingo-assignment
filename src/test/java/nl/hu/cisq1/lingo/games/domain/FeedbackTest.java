@@ -48,4 +48,12 @@ class FeedbackTest {
                 Arguments.of("appel", List.of(CORRECT, CORRECT, CORRECT, CORRECT, CORRECT), "appel")
         );
     }
+
+    @DisplayName("simple compare mark list test")
+    @Test
+    void compareMarkList(){
+        var feedbackListOne = new Feedback("test", List.of(CORRECT, ABSENT, CORRECT, ABSENT));
+        var feedbackListTwo = new Feedback("test", List.of(CORRECT, ABSENT, CORRECT, ABSENT));
+        assertEquals(feedbackListOne, feedbackListTwo);
+    }
 }

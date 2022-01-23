@@ -81,6 +81,6 @@ public class Game {
     }
 
     public Progress gameProgress() {
-        return new Progress(id, score, rounds, gameProgress);
+        return new Progress(id, score, gameProgress);
     }
 }
