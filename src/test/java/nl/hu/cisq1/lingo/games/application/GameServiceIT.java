@@ -3,6 +3,7 @@ package nl.hu.cisq1.lingo.games.application;
 import nl.hu.cisq1.lingo.CiTestConfiguration;
 import nl.hu.cisq1.lingo.games.data.GameRepository;
 import nl.hu.cisq1.lingo.games.domain.Game;
+import nl.hu.cisq1.lingo.games.presentation.dto.request.RequestAttemptDto;
 import nl.hu.cisq1.lingo.words.data.SpringWordRepository;
 import nl.hu.cisq1.lingo.words.domain.Word;
 import org.junit.jupiter.api.DisplayName;
@@ -97,6 +98,28 @@ class GameServiceIT {
         mockMvc.perform(request)
                 .andExpect(status().isNotFound());
     }
+//    @Test
+//    @DisplayName("post on new game attempt")
+//    void gameAttemptTest() throws Exception {
+//        var game = new Game();;
+//        RequestAttemptDto dto = new RequestAttemptDto();
+//        dto.setWord("hark");
+//
+//        game.newRound("bark");
+//        game.gameAttempt(dto.getWord());
+//
+//        when(gameRepository.findById(0L))
+//                .thenReturn(Optional.of(game));
+//
+//        when(wordRepository.findRandomWordByLength(6))
+//                .thenReturn(Optional.of(new Word("hoeden")));
+//
+//        RequestBuilder request = MockMvcRequestBuilders
+//                .post("/game/0/attempt");
+//
+//        mockMvc.perform(request)
+//                .andExpect(status().isOk());
+//    }
 
     @Test
     @DisplayName("cannot get a game by id if id does not exist")

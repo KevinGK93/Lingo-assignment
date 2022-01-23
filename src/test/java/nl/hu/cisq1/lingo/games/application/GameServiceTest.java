@@ -73,7 +73,7 @@ class GameServiceTest {
     @ParameterizedTest
     @DisplayName("When a player has guessed the feedbackhistory should increase")
     @MethodSource("feedbackHistoryArguments")
-    void testFeedbackHistory(int guessAttempts, GameProgress gameProgress){
+    void testFeedbackHistory(int guessAttempts, int feedbackHistoryLength, GameProgress gameProgress){
         //Given
         WordService wordService = mock(WordService.class);
         GameRepository repository = mock(GameRepository.class);
