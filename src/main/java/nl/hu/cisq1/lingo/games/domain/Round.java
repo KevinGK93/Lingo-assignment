@@ -42,12 +42,12 @@ public class Round {
     public int determineScore(){
         return 5 * (5 - feedbackHistory.size() + 5);
     }
-
+    // returns the size of the feedbackHistory \\
     public int getFeedbackHistorySize(){
         return feedbackHistory.size();
     }
 
-    // If the feedbackHistorySize equals 6 the player has lost.\\
+    //a player can guess 5 times, if the word is not correct the player has lost. \\
     public boolean thePlayerHasLost(){
         return getFeedbackHistorySize() == 5;
 
@@ -63,7 +63,7 @@ public class Round {
         return !feedbackGiven.contains(Mark.ABSENT) && !feedbackGiven.contains(Mark.PRESENT);
     }
 
-    // get the (int) length of the word for the game.\\
+    // returns the (int) length of the word for the game.\\
     public int getWordToGuessLength(){
         return wordToGuess.length();
     }
