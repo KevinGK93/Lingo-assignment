@@ -1,6 +1,5 @@
 package nl.hu.cisq1.lingo.games.domain;
 
-import nl.hu.cisq1.lingo.games.domain.enumerations.ErrorMessages;
 import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,9 +56,13 @@ class RoundTest {
         round.attemptAtWord("kevin");
         assertTrue(round.isWordGuessed());
     }
+    @DisplayName("useless Round to string test")
+    @Test
+    void feedbackGetterAndSetter(){
+        var round = new Round();
 
-
-
-
+        assertEquals(round.toString(), round.toString());
     }
+
+}
 

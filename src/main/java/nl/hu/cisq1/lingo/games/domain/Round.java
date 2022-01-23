@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import nl.hu.cisq1.lingo.games.domain.enumerations.ErrorMessages;
-import nl.hu.cisq1.lingo.games.domain.enumerations.GameProgress;
 import nl.hu.cisq1.lingo.games.domain.enumerations.Mark;
 import nl.hu.cisq1.lingo.games.domain.exceptions.ExceptionMessages;
 import org.hibernate.annotations.Cascade;

@@ -56,4 +56,12 @@ class FeedbackTest {
         var feedbackListTwo = new Feedback("test", List.of(CORRECT, ABSENT, CORRECT, ABSENT));
         assertEquals(feedbackListOne, feedbackListTwo);
     }
+
+    @DisplayName("useless feedback to string test")
+    @Test
+    void feedbackGetterAndSetter(){
+        var feedback = new Feedback();
+
+        assertEquals(feedback.toString(), feedback.toString());
+    }
 }
