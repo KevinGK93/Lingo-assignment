@@ -62,10 +62,11 @@ class GameServiceTest {
     @Test
     @DisplayName("Game exception if game is not found")
     void gameNotFoundExceptionTest(){
+        //Given
         WordService wordService = mock(WordService.class);
         GameRepository repository = mock(GameRepository.class);
         GameService gameService = new GameService(wordService, repository);
-
+        //Then
         assertThrows(ExceptionMessages.class, ()
                 -> gameService.startNewLingoRound(0L));
     }
@@ -81,6 +82,7 @@ class GameServiceTest {
 
         var game = new Game();
         var progress = new Progress();
+        //When
         when(repository.findById(anyLong())).thenReturn(Optional.of(game));
         game.newRound("advies");
 
@@ -92,7 +94,7 @@ class GameServiceTest {
         //Then
         assertEquals(progress.getGameProgress(), gameProgress);
     }
-
+        
     static Stream<Arguments> feedbackHistoryArguments(){
         return Stream.of(
                 Arguments.of(1, 1, GameProgress.PLAYING),
