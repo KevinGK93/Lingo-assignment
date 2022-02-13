@@ -22,9 +22,9 @@ jobs:
         with:
           java-version: 14
 
-      #Clean package with CI profile
+      #Clean package with CI profile ## TEST EDIT TO: install 13-02-2022 ##
       - name: Build using Maven
-        run: mvn -B clean package -Dspring.profiles.active=ci
+        run: mvn -B install -Dspring.profiles.active=ci
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
